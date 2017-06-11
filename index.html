@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор налогов - тестовое задание</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</head>
+<body>
+<div id="wrap">
+    <div class="header clearfix">
+        <div class="title">
+            <div class="name">Калькулятор налогов с зарплаты</div>
+            <div class="description">Рассчитайте зарплату с учётом налогов и вычетов</div>
+        </div>
+        <div class="open-btn"><i class="fa fa-chevron-circle-down"
+                                 aria-hidden="true"></i><span>Открыть калькулятор</span>
+        </div>
+        <div class="clear-btn"><i class="fa fa-eraser fa-rotate-180" aria-hidden="true"></i></div>
+    </div>
+    <div class="calc-block">
+        <div class="calc-input-block">
+            <div id="input-field-1" class="input-fields clearfix">
+                <div class="label-field">Выберите необходимый вариант
+                    для&nbsp;расчета&nbsp;налогов&nbsp;с&nbsp;зарплаты сотрудника
+                </div>
+                <div class="radiobutton-field">
+                    <label><input type="radio" class="radio" id="variant-1" checked name="variant">
+                        <span>Зарплата сотрудника до налогообложения</span></label>
+                    <label><input type="radio" class="radio" id="variant-2" name="variant">
+                        <span>Зарплата "На руки" (обратный расчет)</span></label>
+                </div>
+            </div>
+            <div id="input-field-2" class="input-fields clearfix">
+                <div class="label-field">Введите сумму зарплаты до налогообложения</div>
+                <div class="text-field">
+                    <input type="text" class="text" title="Введите сумму зарплаты до налогообложения"
+                           placeholder="30 000">
+                </div>
+            </div>
+            <div id="input-field-3" class="input-fields clearfix">
+                <div class="label-field">Наличие вычетов</div>
+                <div class="checkbox-field">
+                    <label><input type="checkbox" class="checkbox" checked name="checkbox">
+                        <span class="checkbox-custom"></span>
+                        <span class="label">На детей</span></label>
+                    <label><input type="checkbox" class="checkbox" name="checkbox">
+                        <span class="checkbox-custom"></span>
+                        <span class="label">На детей инвалидов</span></label>
+                    <label><input type="checkbox" class="checkbox" name="checkbox">
+                        <span class="checkbox-custom"></span>
+                        <span class="label" id="fot">Вычеты без ограничения по ФОТ с начала года</span></label>
+                    <label><input type="checkbox" class="checkbox" name="checkbox">
+                        <span class="checkbox-custom"></span>
+                        <span class="label">Иные вычеты</span></label>
+                </div>
+            </div>
+            <div id="input-field-4" class="input-fields clearfix">
+                <div class="label-field">Введите количество детей в возрасте до 18 лет или&nbsp;до&nbsp;24 обучающихся
+                    на очной основе
+                </div>
+                <div class="radiobutton-field">
+                    <label><input type="radio" class="radio" id="one" name="children"><span>Один</span></label>
+                    <label><input type="radio" class="radio" id="two" name="children"><span>Двое</span></label>
+                    <label><input type="radio" class="radio" id="three" name="children"><span>Трое</span></label><br>
+                    <label><input type="radio" class="radio" id="four" name="children"><span>Четверо</span></label>
+                    <label><input type="radio" class="radio" id="five" name="children"><span>Пятеро</span></label>
+                    <label><input type="radio" class="radio" id="six" name="children"><span>Шестеро</span></label>
+                </div>
+            </div>
+            <div id="input-field-5" class="input-fields clearfix">
+                <div class="label-field">Введите процент отчисления в ФСС на несчастные случаи и проф. заболевания
+                    <span class="light">(по умолчанию 0.2%)</span>
+                </div>
+                <div class="text-field">
+                    <input type="text" class="text"
+                           title="Введите процент отчисления в ФСС на несчастные случаи и проф. заболевания"
+                           placeholder="0,2">
+                </div>
+            </div>
+        </div>
+        <div class="calc-output-block">
+            <div class="output-title">
+                <i class="fa fa-calculator" aria-hidden="true"></i>
+                <div
+                        class="output-title-text">Расчет зарплаты
+                </div>
+            </div>
+            <div class="sum clearfix">
+                <div class="sum-title">Сумма зарплаты на руки</div>
+                <div class="sum-value" id="salary">130 500<span>.-</span></div>
+            </div>
+            <div class="sum clearfix">
+                <div class="sum-title">Сумма НДФЛ (13%)</div>
+                <div class="sum-value" id="ndfl">19 500<span>.-</span></div>
+            </div>
+            <div class="taxes-title">Налоги</div>
+            <div class="taxes-description">Налоги, уплачиваемые работодателем с&nbsp;зарплаты сотрудника</div>
+            <div class="sum clearfix">
+                <div class="sum-title">Сумма в ПФР (22%)</div>
+                <div class="sum-value" id="pfr">33 000<span>.-</span></div>
+            </div>
+            <div class="sum clearfix">
+                <div class="sum-title">Сумма в ФФОМС (5,1%)</div>
+                <div class="sum-value" id="ffoms">7 650<span>.-</span></div>
+            </div>
+            <div class="sum clearfix">
+                <div class="sum-title">Сумма в ФСС (2,9%)</div>
+                <div class="sum-value" id="fss">4 350<span>.-</span></div>
+            </div>
+            <div class="sum clearfix">
+                <div class="sum-title">Сумма в ФСС<a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                </div>
+                <div class="sum-value" id="fss-1">6 000<span>.-</span></div>
+            </div>
+            <div class="total clearfix">
+                <div class="total-title">Итого</div>
+                <div class="total-value" id="total">51 000<span>.-</span></div>
+            </div>
+            <hr class="line">
+            <div class="total clearfix">
+                <div class="total-title">Всего налогов</div>
+                <div class="total-value" id="all">70 500<span>.-</span></div>
+            </div>
+            <div class="light">(работодатель + сотрудник)</div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.open-btn').click(function () {
+            $('.calc-block').addClass('active');
+            $(this).css('display', 'none');
+            $('.clear-btn').css('display', 'block');
+        });
+        $('.clear-btn').hover(
+                function () {
+                    $(this).append($('<span>Очистить</span>'));
+                    $(this).addClass('big-clear-btn');
+                },
+                function () {
+                    $(this).find('span:last').remove();
+                    $(this).removeClass('big-clear-btn');
+                }
+        );
+    });
+</script>
+</body>
+</html>
