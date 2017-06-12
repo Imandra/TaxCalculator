@@ -97,7 +97,7 @@ body {
 /* calculation block */
 
 .calc-block {
-    /*display: none;*/
+    display: none;
     margin-top: 65px;
 }
 
