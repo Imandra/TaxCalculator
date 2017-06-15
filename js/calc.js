@@ -12,13 +12,15 @@ $(document).ready(function () {
     var pensionTax = 0;
     var medicalInsurance = 0;
     var socialInsurance = 0;
-    var accidentInsurance= 0;
+    var accidentInsurance = 0;
     var total = 0;
     var allTaxes = 0;
     var accidentInsuranceRatio = 0;
 
-    $('#accidents').bind('keyup change', function () {
+    $('#accidents').bind('input', function () {
         accidentInsuranceRatio = $('#accidents').val().replace(/,/, '.').replace(/\s/g, '') * PERCENT_TO_NUMBER;
+        if (salaryBeforeTax === 0)
+            return;
         if (accidentInsuranceRatio === 0)
             accidentInsuranceRatio = ACCIDENT_INSURANCE_RATE * PERCENT_TO_NUMBER;
         accidentInsurance = parseInt((salaryBeforeTax * accidentInsuranceRatio).toFixed());
@@ -29,7 +31,7 @@ $(document).ready(function () {
         $('#all').text(allTaxes.toLocaleString());
     });
 
-    $('#salary-before').bind('keyup change', function () {
+    $('#salary-before').bind('input', function () {
         salaryBeforeTax = $('#salary-before').val().replace(/,/, '.').replace(/\s/g, '') * 1; // string to number
         personalIncomeTax = parseInt((salaryBeforeTax * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
         salaryAfterTax = parseInt((salaryBeforeTax - personalIncomeTax).toFixed());
@@ -53,5 +55,49 @@ $(document).ready(function () {
         $('#fss-nc').text(accidentInsurance.toLocaleString());
         $('#total').text(total.toLocaleString());
         $('#all').text(allTaxes.toLocaleString());
+    });
+
+    $('.clear-btn').click(function () {
+        salaryBeforeTax = 0;
+        personalIncomeTax = 0;
+        salaryAfterTax = 0;
+        pensionTax = 0;
+        medicalInsurance = 0;
+        socialInsurance = 0;
+        accidentInsurance = 0;
+        total = 0;
+        allTaxes = 0;
+        accidentInsuranceRatio = 0;
+        $('.text').val('');
+        $('#salary').text('26 100');
+        $('#ndfl').text('3 900');
+        $('#pfr').text('6 600');
+        $('#ffoms').text('1 530');
+        $('#fss').text('870');
+        $('#fss-nc').text('60');
+        $('#total').text('9 060');
+        $('#all').text('12 960');
+    });
+});
+
+$(document).ready(function () {
+    $("#salary-before").bind('focus', function () {
+        if ($("#salary-before").val() === '')
+            $('.output').text('0');
+    });
+});
+
+$(document).ready(function () {
+    $("#salary-before").bind('blur', function () {
+        if ($("#salary-before").val() === '') {
+            $('#salary').text('26 100');
+            $('#ndfl').text('3 900');
+            $('#pfr').text('6 600');
+            $('#ffoms').text('1 530');
+            $('#fss').text('870');
+            $('#fss-nc').text('60');
+            $('#total').text('9 060');
+            $('#all').text('12 960');
+        }
     });
 });
