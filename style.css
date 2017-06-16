@@ -110,8 +110,12 @@ body {
     float: left;
 }
 
-#input-field-1, #input-field-2, #input-field-3, #input-field-4, #input-field-5 {
+#input-field-1, #input-field-2, #input-field-3, #input-field-4, #input-field-5, #input-field-8 {
     width: 800px;
+}
+
+#input-field-5, #input-field-6, #input-field-7{
+    display: none;
 }
 
 .label-field, .radiobutton-field, .checkbox-field, .text-field {
@@ -127,11 +131,15 @@ body {
     line-height: 78px;
 }
 
-#input-field-3, #input-field-4, #input-field-5 {
+#input-field-7 {
+    line-height: 52px;
+}
+
+#input-field-3, #input-field-4, #input-field-5, #input-field-6, #input-field-7, #input-field-8 {
     margin-top: 15px;
 }
 
-#input-field-5 .label-field {
+#input-field-6 .label-field, #input-field-7 .label-field, #input-field-8 .label-field{
     margin: 14px 0;
 }
 
@@ -139,12 +147,12 @@ body {
     line-height: 30px;
 }
 
-#input-field-4 .radiobutton-field label {
+#input-field-4 .radiobutton-field label, #input-field-5 .radiobutton-field label {
     width: 100px;
     margin-right: 16px;
 }
 
-#input-field-1 .label-field, #input-field-4 .label-field {
+#input-field-1 .label-field, #input-field-4 .label-field, #input-field-5 .label-field {
     margin: 4px 0;
 }
 

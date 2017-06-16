@@ -42,16 +42,16 @@
             <div id="input-field-3" class="input-fields clearfix">
                 <div class="label-field">Наличие вычетов</div>
                 <div class="checkbox-field">
-                    <label><input type="checkbox" class="checkbox" checked name="checkbox">
+                    <label><input type="checkbox" class="checkbox" checked id="children" name="children">
                         <span class="checkbox-custom"></span>
                         <span class="label">На детей</span></label>
-                    <label><input type="checkbox" class="checkbox" name="checkbox">
+                    <label><input type="checkbox" class="checkbox" id="children-disabled" name="children-disabled">
                         <span class="checkbox-custom"></span>
                         <span class="label">На детей инвалидов</span></label>
-                    <label><input type="checkbox" class="checkbox" name="checkbox">
+                    <label><input type="checkbox" class="checkbox" id="fot-deductions" name="fot-deductions">
                         <span class="checkbox-custom"></span>
                         <span class="label" id="fot">Вычеты без ограничения по ФОТ с начала года</span></label>
-                    <label><input type="checkbox" class="checkbox" name="checkbox">
+                    <label><input type="checkbox" class="checkbox" id="add-deductions" name="add-deductions">
                         <span class="checkbox-custom"></span>
                         <span class="label">Иные вычеты</span></label>
                 </div>
@@ -61,15 +61,59 @@
                     на очной основе
                 </div>
                 <div class="radiobutton-field">
-                    <label><input type="radio" class="radio" id="one" name="children"><span>Один</span></label>
-                    <label><input type="radio" class="radio" id="two" name="children"><span>Двое</span></label>
-                    <label><input type="radio" class="radio" id="three" name="children"><span>Трое</span></label><br>
-                    <label><input type="radio" class="radio" id="four" name="children"><span>Четверо</span></label>
-                    <label><input type="radio" class="radio" id="five" name="children"><span>Пятеро</span></label>
-                    <label><input type="radio" class="radio" id="six" name="children"><span>Шестеро</span></label>
+                    <label><input type="radio" class="radio" id="one" name="children"
+                                  value="1"><span>Один</span></label>
+                    <label><input type="radio" class="radio" id="two" name="children"
+                                  value="2"><span>Двое</span></label>
+                    <label><input type="radio" class="radio" id="three" name="children"
+                                  value="3"><span>Трое</span></label><br>
+                    <label><input type="radio" class="radio" id="four" name="children"
+                                  value="4"><span>Четверо</span></label>
+                    <label><input type="radio" class="radio" id="five" name="children"
+                                  value="5"><span>Пятеро</span></label>
+                    <label><input type="radio" class="radio" id="six" name="children"
+                                  value="6"><span>Шестеро</span></label>
                 </div>
             </div>
             <div id="input-field-5" class="input-fields clearfix">
+                <div class="label-field">Введите количество детей - инвалидов в возрасте до&nbsp;18&nbsp;лет или до 24
+                    обучающихся на очной основе
+                </div>
+                <div class="radiobutton-field">
+                    <label><input type="radio" class="radio" id="one-d"
+                                  name="children-dis" value="1"><span>Один</span></label>
+                    <label><input type="radio" class="radio" id="two-d"
+                                  name="children-dis" value="2"><span>Двое</span></label>
+                    <label><input type="radio" class="radio" id="three-d"
+                                  name="children-dis" value="3"><span>Трое</span></label><br>
+                    <label><input type="radio" class="radio" id="four-d"
+                                  name="children-dis" value="4"><span>Четверо</span></label>
+                    <label><input type="radio" class="radio" id="five-d"
+                                  name="children-dis" value="5"><span>Пятеро</span></label>
+                    <label><input type="radio" class="radio" id="six-d"
+                                  name="children-dis" value="6"><span>Шестеро</span></label>
+                </div>
+            </div>
+            <div id="input-field-6" class="input-fields clearfix">
+                <div class="label-field">Сумма иных вычетов на сотрудника, на которые не&nbsp;распространяются
+                    ограничения по
+                    сумм ФОТ
+                </div>
+                <div class="text-field">
+                    <input type="text" class="text" id="fot-add-deduct"
+                           title="Сумма иных вычетов на сотрудника, на которые не распространяются ограничения по сумм ФОТ (350 тыс. рублей)"
+                           autocomplete="off">
+                </div>
+            </div>
+            <div id="input-field-7" class="input-fields clearfix">
+                <div class="label-field">Сумма иных вычетов на сотрудника</div>
+                <div class="text-field">
+                    <input type="text" class="text" id="add-deduct"
+                           title="Сумма иных вычетов на сотрудника"
+                           autocomplete="off">
+                </div>
+            </div>
+            <div id="input-field-8" class="input-fields clearfix">
                 <div class="label-field">Введите процент отчисления в ФСС на несчастные случаи и проф. заболевания
                     <span class="light">(по умолчанию 0.2%)</span>
                 </div>

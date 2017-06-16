@@ -6,6 +6,10 @@ $(document).ready(function () {
     const SOCIAL_INSURANCE_RATE = 2.9;
     const ACCIDENT_INSURANCE_RATE = 0.2;
 
+    const DEDUCTION_PER_CHILD = 1400;
+    const DEDUCTION_THIRD_CHILD = 3000;
+    const DEDUCTION_DISABLED_CHILD = 12000;
+
     var salaryBeforeTax = 0;
     var personalIncomeTax = 0;
     var salaryAfterTax = 0;
@@ -16,6 +20,22 @@ $(document).ready(function () {
     var total = 0;
     var allTaxes = 0;
     var accidentInsuranceRatio = 0;
+
+    var deductionChildren = 0;
+    var deductionDisabledChildren = 0;
+
+    $(':radio[name=children]').change(function () {
+        var number = $(':radio[name=children]').filter(':checked').val() * 1;
+        if (number === 1)
+            deductionChildren = DEDUCTION_PER_CHILD;
+        else
+            deductionChildren = DEDUCTION_PER_CHILD * 2 + DEDUCTION_THIRD_CHILD * (number - 2);
+    });
+
+    $(':radio[name=children-dis]').change(function () {
+        var number = $(':radio[name=children-dis]').filter(':checked').val() * 1;
+        deductionDisabledChildren = DEDUCTION_DISABLED_CHILD * number;
+    });
 
     $('#accidents').bind('input', function () {
         accidentInsuranceRatio = $('#accidents').val().replace(/,/, '.').replace(/\s/g, '') * PERCENT_TO_NUMBER;

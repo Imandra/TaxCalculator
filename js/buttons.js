@@ -15,3 +15,41 @@ $(document).ready(function () {
         }
     );
 });
+
+$(document).ready(function () {
+    $("#children").change(function () {
+        if ($(this).prop('checked')) {
+            $('#input-field-4').css('display', 'block');
+
+        } else {
+            $('#input-field-4').css('display', 'none');
+        }
+    });
+
+    $("#children-disabled").change(function () {
+        if ($(this).prop('checked')) {
+            $('#input-field-5').css('display', 'block');
+
+        } else {
+            $('#input-field-5').css('display', 'none');
+        }
+    });
+
+    $("#fot-deductions").change(function () {
+        if ($(this).prop('checked')) {
+            $('#input-field-6').css('display', 'block');
+
+        } else {
+            $('#input-field-6').css('display', 'none');
+        }
+    });
+
+    $("#add-deductions").change(function () {
+        if ($(this).prop('checked')) {
+            $('#input-field-7').css('display', 'block');
+
+        } else {
+            $('#input-field-7').css('display', 'none');
+        }
+    });
+});
