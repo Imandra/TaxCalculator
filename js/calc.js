@@ -23,19 +23,80 @@ $(document).ready(function () {
 
     var deductionChildren = 0;
     var deductionDisabledChildren = 0;
+    var otherDeductionFOT = 0;
+    var otherDeduction = 0;
+    var allDeductions = 0;
+    var salaryBeforeTaxWithDeduct = 0;
 
     $(':radio[name=children]').change(function () {
-        var number = $(':radio[name=children]').filter(':checked').val() * 1;
-        if (number === 1)
+        allDeductions -= deductionChildren;
+        var numberOfChildren = $(':radio[name=children]').filter(':checked').val() * 1;
+        if (numberOfChildren === 1)
             deductionChildren = DEDUCTION_PER_CHILD;
         else
-            deductionChildren = DEDUCTION_PER_CHILD * 2 + DEDUCTION_THIRD_CHILD * (number - 2);
+            deductionChildren = DEDUCTION_PER_CHILD * 2 + DEDUCTION_THIRD_CHILD * (numberOfChildren - 2);
+        allDeductions += deductionChildren;
+        salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
+        if (salaryBeforeTaxWithDeduct <= 0)
+            personalIncomeTax = 0;
+        else
+            personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+        salaryAfterTax = parseInt((salaryBeforeTax - personalIncomeTax).toFixed());
+        allTaxes = personalIncomeTax + total;
+        $('#all').text(allTaxes.toLocaleString());
+        $('#salary').text(salaryAfterTax.toLocaleString());
+        $('#ndfl').text(personalIncomeTax.toLocaleString());
     });
 
     $(':radio[name=children-dis]').change(function () {
-        var number = $(':radio[name=children-dis]').filter(':checked').val() * 1;
-        deductionDisabledChildren = DEDUCTION_DISABLED_CHILD * number;
+        allDeductions -= deductionDisabledChildren;
+        var numberOfDisabled = $(':radio[name=children-dis]').filter(':checked').val() * 1;
+        deductionDisabledChildren = DEDUCTION_DISABLED_CHILD * numberOfDisabled;
+        allDeductions += deductionDisabledChildren;
+        salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
+        if (salaryBeforeTaxWithDeduct <= 0)
+            personalIncomeTax = 0;
+        else
+            personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+        salaryAfterTax = parseInt((salaryBeforeTax - personalIncomeTax).toFixed());
+        allTaxes = personalIncomeTax + total;
+        $('#all').text(allTaxes.toLocaleString());
+        $('#salary').text(salaryAfterTax.toLocaleString());
+        $('#ndfl').text(personalIncomeTax.toLocaleString());
     });
+
+    $('#fot-other-deduct').bind('input', function () {
+        allDeductions -= otherDeductionFOT;
+        otherDeductionFOT = $('#fot-other-deduct').val().replace(/,/, '.').replace(/\s/g, '') * 1;
+        allDeductions += otherDeductionFOT;
+        salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
+        if (salaryBeforeTaxWithDeduct <= 0)
+            personalIncomeTax = 0;
+        else
+            personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+        salaryAfterTax = parseInt((salaryBeforeTax - personalIncomeTax).toFixed());
+        allTaxes = personalIncomeTax + total;
+        $('#all').text(allTaxes.toLocaleString());
+        $('#salary').text(salaryAfterTax.toLocaleString());
+        $('#ndfl').text(personalIncomeTax.toLocaleString());
+    });
+
+    $('#other-deduct').bind('input', function () {
+        allDeductions -= otherDeduction;
+        otherDeduction = $('#other-deduct').val().replace(/,/, '.').replace(/\s/g, '') * 1;
+        allDeductions += otherDeduction;
+        salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
+        if (salaryBeforeTaxWithDeduct <= 0)
+            personalIncomeTax = 0;
+        else
+            personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+        salaryAfterTax = parseInt((salaryBeforeTax - personalIncomeTax).toFixed());
+        allTaxes = personalIncomeTax + total;
+        $('#all').text(allTaxes.toLocaleString());
+        $('#salary').text(salaryAfterTax.toLocaleString());
+        $('#ndfl').text(personalIncomeTax.toLocaleString());
+    });
+
 
     $('#accidents').bind('input', function () {
         accidentInsuranceRatio = $('#accidents').val().replace(/,/, '.').replace(/\s/g, '') * PERCENT_TO_NUMBER;
@@ -53,7 +114,11 @@ $(document).ready(function () {
 
     $('#salary-before').bind('input', function () {
         salaryBeforeTax = $('#salary-before').val().replace(/,/, '.').replace(/\s/g, '') * 1; // string to number
-        personalIncomeTax = parseInt((salaryBeforeTax * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+        salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
+        if (salaryBeforeTaxWithDeduct <= 0)
+            personalIncomeTax = 0;
+        else
+            personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
         salaryAfterTax = parseInt((salaryBeforeTax - personalIncomeTax).toFixed());
         pensionTax = parseInt((salaryBeforeTax * PENSION_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
         medicalInsurance = parseInt((salaryBeforeTax * MEDICAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
@@ -88,6 +153,12 @@ $(document).ready(function () {
         total = 0;
         allTaxes = 0;
         accidentInsuranceRatio = 0;
+        deductionChildren = 0;
+        deductionDisabledChildren = 0;
+        otherDeductionFOT = 0;
+        otherDeduction = 0;
+        allDeductions = 0;
+        salaryBeforeTaxWithDeduct = 0;
         $('.text').val('');
         $('#salary').text('26 100');
         $('#ndfl').text('3 900');
@@ -97,6 +168,14 @@ $(document).ready(function () {
         $('#fss-nc').text('60');
         $('#total').text('9 060');
         $('#all').text('12 960');
+        $(':radio[name=children]').prop('checked', false);
+        $(':radio[name=children-dis]').prop('checked', false);
+        $('#children-disabled').prop('checked', false);
+        $('#fot-deductions').prop('checked', false);
+        $('#add-deductions').prop('checked', false);
+        $('#input-field-5').css('display', 'none');
+        $('#input-field-6').css('display', 'none');
+        $('#input-field-7').css('display', 'none');
     });
 });
 

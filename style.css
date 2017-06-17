@@ -114,7 +114,7 @@ body {
     width: 800px;
 }
 
-#input-field-5, #input-field-6, #input-field-7{
+#input-field-5, #input-field-6, #input-field-7 {
     display: none;
 }
 
@@ -139,7 +139,7 @@ body {
     margin-top: 15px;
 }
 
-#input-field-6 .label-field, #input-field-7 .label-field, #input-field-8 .label-field{
+#input-field-6 .label-field, #input-field-7 .label-field, #input-field-8 .label-field {
     margin: 14px 0;
 }
 
