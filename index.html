@@ -39,6 +39,13 @@
                            placeholder="30 000" autocomplete="off">
                 </div>
             </div>
+            <div id="input-field-2-1" class="input-fields clearfix">
+                <div class="label-field">Введите сумму зарплаты полученной на руки</div>
+                <div class="text-field">
+                    <input type="text" id="salary-after" class="text" title="Введите сумму зарплаты полученной на руки"
+                           placeholder="26 100" autocomplete="off">
+                </div>
+            </div>
             <div id="input-field-3" class="input-fields clearfix">
                 <div class="label-field">Наличие вычетов</div>
                 <div class="checkbox-field">
@@ -130,9 +137,13 @@
                         class="output-title-text">Расчет зарплаты
                 </div>
             </div>
-            <div class="sum clearfix">
-                <div class="sum-title">Сумма зарплаты на руки</div>
+            <div class="sum clearfix direct">
+                <div class="sum-title ">Сумма зарплаты на руки</div>
                 <div class="sum-value"><span class="output" id="salary">26 100</span><span>.-</span></div>
+            </div>
+            <div class="sum clearfix reverse">
+                <div class="sum-title ">Сумма зарплаты до налог-я</div>
+                <div class="sum-value"><span class="output" id="salary-rev">30 000</span><span>.-</span></div>
             </div>
             <div class="sum clearfix">
                 <div class="sum-title">Сумма НДФЛ (13%)</div>

@@ -17,7 +17,7 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $("#children").change(function () {
+    $('#children').change(function () {
         if ($(this).prop('checked')) {
             $('#input-field-4').css('display', 'block');
 
@@ -26,7 +26,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#children-disabled").change(function () {
+    $('#children-disabled').change(function () {
         if ($(this).prop('checked')) {
             $('#input-field-5').css('display', 'block');
 
@@ -35,7 +35,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#fot-deductions").change(function () {
+    $('#fot-deductions').change(function () {
         if ($(this).prop('checked')) {
             $('#input-field-6').css('display', 'block');
 
@@ -44,12 +44,27 @@ $(document).ready(function () {
         }
     });
 
-    $("#add-deductions").change(function () {
+    $('#add-deductions').change(function () {
         if ($(this).prop('checked')) {
             $('#input-field-7').css('display', 'block');
 
         } else {
             $('#input-field-7').css('display', 'none');
+        }
+    });
+
+    $(':radio[name=variant]').change(function () {
+        if ($('#variant-2').prop('checked')) {
+            $('#input-field-2-1').css('display', 'block');
+            $('#input-field-2').css('display', 'none');
+            $('.reverse').css('display', 'block');
+            $('.direct').css('display', 'none');
+
+        } else {
+            $('#input-field-2-1').css('display', 'none');
+            $('#input-field-2').css('display', 'block');
+            $('.reverse').css('display', 'none');
+            $('.direct').css('display', 'block');
         }
     });
 });

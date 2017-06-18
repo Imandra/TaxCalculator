@@ -110,11 +110,11 @@ body {
     float: left;
 }
 
-#input-field-1, #input-field-2, #input-field-3, #input-field-4, #input-field-5, #input-field-8 {
+#input-field-1, #input-field-2, #input-field-2-1, #input-field-3, #input-field-4, #input-field-5, #input-field-8 {
     width: 800px;
 }
 
-#input-field-5, #input-field-6, #input-field-7 {
+#input-field-5, #input-field-6, #input-field-7, #input-field-2-1 {
     display: none;
 }
 
@@ -127,7 +127,7 @@ body {
     float: left;
 }
 
-#input-field-2 {
+#input-field-2, #input-field-2-1 {
     line-height: 78px;
 }
 
@@ -361,4 +361,8 @@ body {
     border: none;
     height: 5px;
     margin: 30px 0 20px 0;
+}
+
+.reverse {
+    display: none;
 }

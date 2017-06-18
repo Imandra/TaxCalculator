@@ -36,16 +36,44 @@ $(document).ready(function () {
         else
             deductionChildren = DEDUCTION_PER_CHILD * 2 + DEDUCTION_THIRD_CHILD * (numberOfChildren - 2);
         allDeductions += deductionChildren;
-        salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
-        if (salaryBeforeTaxWithDeduct <= 0)
-            personalIncomeTax = 0;
-        else
-            personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
-        salaryAfterTax = parseInt((salaryBeforeTax - personalIncomeTax).toFixed());
-        allTaxes = personalIncomeTax + total;
-        $('#all').text(allTaxes.toLocaleString());
-        $('#salary').text(salaryAfterTax.toLocaleString());
-        $('#ndfl').text(personalIncomeTax.toLocaleString());
+
+        if ($('#variant-1').prop("checked")) {
+            salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
+            if (salaryBeforeTaxWithDeduct <= 0)
+                personalIncomeTax = 0;
+            else
+                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+            salaryAfterTax = parseInt((salaryBeforeTax - personalIncomeTax).toFixed());
+            allTaxes = personalIncomeTax + total;
+            $('#all').text(allTaxes.toLocaleString());
+            $('#salary').text(salaryAfterTax.toLocaleString());
+            $('#ndfl').text(personalIncomeTax.toLocaleString());
+        } else {
+            salaryBeforeTax = parseInt(((salaryAfterTax - allDeductions * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER) / (1 - PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER)).toFixed());
+            salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
+            if (salaryBeforeTaxWithDeduct <= 0)
+                personalIncomeTax = 0;
+            else
+                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+            pensionTax = parseInt((salaryBeforeTax * PENSION_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+            medicalInsurance = parseInt((salaryBeforeTax * MEDICAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+            socialInsurance = parseInt((salaryBeforeTax * SOCIAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+            if (accidentInsuranceRatio === 0)
+                accidentInsurance = parseInt((salaryBeforeTax * ACCIDENT_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+            else
+                accidentInsurance = parseInt((salaryBeforeTax * accidentInsuranceRatio).toFixed());
+
+            total = pensionTax + medicalInsurance + socialInsurance + accidentInsurance;
+            allTaxes = personalIncomeTax + total;
+            $('#salary-rev').text(salaryBeforeTax.toLocaleString());
+            $('#ndfl').text(personalIncomeTax.toLocaleString());
+            $('#pfr').text(pensionTax.toLocaleString());
+            $('#ffoms').text(medicalInsurance.toLocaleString());
+            $('#fss').text(socialInsurance.toLocaleString());
+            $('#fss-nc').text(accidentInsurance.toLocaleString());
+            $('#total').text(total.toLocaleString());
+            $('#all').text(allTaxes.toLocaleString());
+        }
     });
 
     $(':radio[name=children-dis]').change(function () {
@@ -53,48 +81,132 @@ $(document).ready(function () {
         var numberOfDisabled = $(':radio[name=children-dis]').filter(':checked').val() * 1;
         deductionDisabledChildren = DEDUCTION_DISABLED_CHILD * numberOfDisabled;
         allDeductions += deductionDisabledChildren;
-        salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
-        if (salaryBeforeTaxWithDeduct <= 0)
-            personalIncomeTax = 0;
-        else
-            personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
-        salaryAfterTax = parseInt((salaryBeforeTax - personalIncomeTax).toFixed());
-        allTaxes = personalIncomeTax + total;
-        $('#all').text(allTaxes.toLocaleString());
-        $('#salary').text(salaryAfterTax.toLocaleString());
-        $('#ndfl').text(personalIncomeTax.toLocaleString());
+
+        if ($('#variant-1').prop("checked")) {
+            salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
+            if (salaryBeforeTaxWithDeduct <= 0)
+                personalIncomeTax = 0;
+            else
+                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+            salaryAfterTax = parseInt((salaryBeforeTax - personalIncomeTax).toFixed());
+            allTaxes = personalIncomeTax + total;
+            $('#all').text(allTaxes.toLocaleString());
+            $('#salary').text(salaryAfterTax.toLocaleString());
+            $('#ndfl').text(personalIncomeTax.toLocaleString());
+        } else {
+            salaryBeforeTax = parseInt(((salaryAfterTax - allDeductions * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER) / (1 - PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER)).toFixed());
+            salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
+            if (salaryBeforeTaxWithDeduct <= 0)
+                personalIncomeTax = 0;
+            else
+                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+            pensionTax = parseInt((salaryBeforeTax * PENSION_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+            medicalInsurance = parseInt((salaryBeforeTax * MEDICAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+            socialInsurance = parseInt((salaryBeforeTax * SOCIAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+            if (accidentInsuranceRatio === 0)
+                accidentInsurance = parseInt((salaryBeforeTax * ACCIDENT_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+            else
+                accidentInsurance = parseInt((salaryBeforeTax * accidentInsuranceRatio).toFixed());
+
+            total = pensionTax + medicalInsurance + socialInsurance + accidentInsurance;
+            allTaxes = personalIncomeTax + total;
+            $('#salary-rev').text(salaryBeforeTax.toLocaleString());
+            $('#ndfl').text(personalIncomeTax.toLocaleString());
+            $('#pfr').text(pensionTax.toLocaleString());
+            $('#ffoms').text(medicalInsurance.toLocaleString());
+            $('#fss').text(socialInsurance.toLocaleString());
+            $('#fss-nc').text(accidentInsurance.toLocaleString());
+            $('#total').text(total.toLocaleString());
+            $('#all').text(allTaxes.toLocaleString());
+        }
     });
 
     $('#fot-other-deduct').bind('input', function () {
         allDeductions -= otherDeductionFOT;
         otherDeductionFOT = $('#fot-other-deduct').val().replace(/,/, '.').replace(/\s/g, '') * 1;
         allDeductions += otherDeductionFOT;
-        salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
-        if (salaryBeforeTaxWithDeduct <= 0)
-            personalIncomeTax = 0;
-        else
-            personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
-        salaryAfterTax = parseInt((salaryBeforeTax - personalIncomeTax).toFixed());
-        allTaxes = personalIncomeTax + total;
-        $('#all').text(allTaxes.toLocaleString());
-        $('#salary').text(salaryAfterTax.toLocaleString());
-        $('#ndfl').text(personalIncomeTax.toLocaleString());
+
+        if ($('#variant-1').prop("checked")) {
+            salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
+            if (salaryBeforeTaxWithDeduct <= 0)
+                personalIncomeTax = 0;
+            else
+                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+            salaryAfterTax = parseInt((salaryBeforeTax - personalIncomeTax).toFixed());
+            allTaxes = personalIncomeTax + total;
+            $('#all').text(allTaxes.toLocaleString());
+            $('#salary').text(salaryAfterTax.toLocaleString());
+            $('#ndfl').text(personalIncomeTax.toLocaleString());
+        } else {
+            salaryBeforeTax = parseInt(((salaryAfterTax - allDeductions * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER) / (1 - PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER)).toFixed());
+            salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
+            if (salaryBeforeTaxWithDeduct <= 0)
+                personalIncomeTax = 0;
+            else
+                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+            pensionTax = parseInt((salaryBeforeTax * PENSION_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+            medicalInsurance = parseInt((salaryBeforeTax * MEDICAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+            socialInsurance = parseInt((salaryBeforeTax * SOCIAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+            if (accidentInsuranceRatio === 0)
+                accidentInsurance = parseInt((salaryBeforeTax * ACCIDENT_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+            else
+                accidentInsurance = parseInt((salaryBeforeTax * accidentInsuranceRatio).toFixed());
+
+            total = pensionTax + medicalInsurance + socialInsurance + accidentInsurance;
+            allTaxes = personalIncomeTax + total;
+            $('#salary-rev').text(salaryBeforeTax.toLocaleString());
+            $('#ndfl').text(personalIncomeTax.toLocaleString());
+            $('#pfr').text(pensionTax.toLocaleString());
+            $('#ffoms').text(medicalInsurance.toLocaleString());
+            $('#fss').text(socialInsurance.toLocaleString());
+            $('#fss-nc').text(accidentInsurance.toLocaleString());
+            $('#total').text(total.toLocaleString());
+            $('#all').text(allTaxes.toLocaleString());
+        }
     });
 
     $('#other-deduct').bind('input', function () {
         allDeductions -= otherDeduction;
         otherDeduction = $('#other-deduct').val().replace(/,/, '.').replace(/\s/g, '') * 1;
         allDeductions += otherDeduction;
-        salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
-        if (salaryBeforeTaxWithDeduct <= 0)
-            personalIncomeTax = 0;
-        else
-            personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
-        salaryAfterTax = parseInt((salaryBeforeTax - personalIncomeTax).toFixed());
-        allTaxes = personalIncomeTax + total;
-        $('#all').text(allTaxes.toLocaleString());
-        $('#salary').text(salaryAfterTax.toLocaleString());
-        $('#ndfl').text(personalIncomeTax.toLocaleString());
+
+        if ($('#variant-1').prop("checked")) {
+            salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
+            if (salaryBeforeTaxWithDeduct <= 0)
+                personalIncomeTax = 0;
+            else
+                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+            salaryAfterTax = parseInt((salaryBeforeTax - personalIncomeTax).toFixed());
+            allTaxes = personalIncomeTax + total;
+            $('#all').text(allTaxes.toLocaleString());
+            $('#salary').text(salaryAfterTax.toLocaleString());
+            $('#ndfl').text(personalIncomeTax.toLocaleString());
+        } else {
+            salaryBeforeTax = parseInt(((salaryAfterTax - allDeductions * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER) / (1 - PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER)).toFixed());
+            salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
+            if (salaryBeforeTaxWithDeduct <= 0)
+                personalIncomeTax = 0;
+            else
+                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+            pensionTax = parseInt((salaryBeforeTax * PENSION_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+            medicalInsurance = parseInt((salaryBeforeTax * MEDICAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+            socialInsurance = parseInt((salaryBeforeTax * SOCIAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+            if (accidentInsuranceRatio === 0)
+                accidentInsurance = parseInt((salaryBeforeTax * ACCIDENT_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+            else
+                accidentInsurance = parseInt((salaryBeforeTax * accidentInsuranceRatio).toFixed());
+
+            total = pensionTax + medicalInsurance + socialInsurance + accidentInsurance;
+            allTaxes = personalIncomeTax + total;
+            $('#salary-rev').text(salaryBeforeTax.toLocaleString());
+            $('#ndfl').text(personalIncomeTax.toLocaleString());
+            $('#pfr').text(pensionTax.toLocaleString());
+            $('#ffoms').text(medicalInsurance.toLocaleString());
+            $('#fss').text(socialInsurance.toLocaleString());
+            $('#fss-nc').text(accidentInsurance.toLocaleString());
+            $('#total').text(total.toLocaleString());
+            $('#all').text(allTaxes.toLocaleString());
+        }
     });
 
 
@@ -142,6 +254,36 @@ $(document).ready(function () {
         $('#all').text(allTaxes.toLocaleString());
     });
 
+    $('#salary-after').bind('input', function () {
+        salaryAfterTax = $('#salary-after').val().replace(/,/, '.').replace(/\s/g, '') * 1; // string to number
+        salaryBeforeTax = parseInt(((salaryAfterTax - allDeductions * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER) / (1 - PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER)).toFixed());
+        salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
+        if (salaryBeforeTaxWithDeduct <= 0)
+            personalIncomeTax = 0;
+        else
+            personalIncomeTax = parseInt((salaryBeforeTax - salaryAfterTax).toFixed());
+        pensionTax = parseInt((salaryBeforeTax * PENSION_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+        medicalInsurance = parseInt((salaryBeforeTax * MEDICAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+        socialInsurance = parseInt((salaryBeforeTax * SOCIAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+
+        if (accidentInsuranceRatio === 0)
+            accidentInsurance = parseInt((salaryBeforeTax * ACCIDENT_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+        else
+            accidentInsurance = parseInt((salaryBeforeTax * accidentInsuranceRatio).toFixed());
+
+        total = pensionTax + medicalInsurance + socialInsurance + accidentInsurance;
+        allTaxes = personalIncomeTax + total;
+
+        $('#salary-rev').text(salaryBeforeTax.toLocaleString());
+        $('#ndfl').text(personalIncomeTax.toLocaleString());
+        $('#pfr').text(pensionTax.toLocaleString());
+        $('#ffoms').text(medicalInsurance.toLocaleString());
+        $('#fss').text(socialInsurance.toLocaleString());
+        $('#fss-nc').text(accidentInsurance.toLocaleString());
+        $('#total').text(total.toLocaleString());
+        $('#all').text(allTaxes.toLocaleString());
+    });
+
     $('.clear-btn').click(function () {
         salaryBeforeTax = 0;
         personalIncomeTax = 0;
@@ -161,6 +303,7 @@ $(document).ready(function () {
         salaryBeforeTaxWithDeduct = 0;
         $('.text').val('');
         $('#salary').text('26 100');
+        $('#salary-rev').text('30 000');
         $('#ndfl').text('3 900');
         $('#pfr').text('6 600');
         $('#ffoms').text('1 530');
@@ -179,6 +322,7 @@ $(document).ready(function () {
     });
 });
 
+/* получение/потеря фокуса поля ввода зарплаты при прямом и обратном расчете */
 $(document).ready(function () {
     $("#salary-before").bind('focus', function () {
         if ($("#salary-before").val() === '')
@@ -189,6 +333,30 @@ $(document).ready(function () {
 $(document).ready(function () {
     $("#salary-before").bind('blur', function () {
         if ($("#salary-before").val() === '') {
+            $('#salary').text('26 100');
+            $('#salary-rev').text('30 000');
+            $('#ndfl').text('3 900');
+            $('#pfr').text('6 600');
+            $('#ffoms').text('1 530');
+            $('#fss').text('870');
+            $('#fss-nc').text('60');
+            $('#total').text('9 060');
+            $('#all').text('12 960');
+        }
+    });
+});
+
+$(document).ready(function () {
+    $("#salary-after").bind('focus', function () {
+        if ($("#salary-after").val() === '')
+            $('.output').text('0');
+    });
+});
+
+$(document).ready(function () {
+    $("#salary-after").bind('blur', function () {
+        if ($("#salary-after").val() === '') {
+            $('#salary-rev').text('30 000');
             $('#salary').text('26 100');
             $('#ndfl').text('3 900');
             $('#pfr').text('6 600');
