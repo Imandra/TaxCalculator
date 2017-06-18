@@ -1,10 +1,10 @@
 $(document).ready(function () {
     const PERCENT_TO_NUMBER = 0.01;
-    const PERSONAL_INC_TAX_RATE = 13;
-    const PENSION_TAX_RATE = 22;
-    const MEDICAL_INSURANCE_RATE = 5.1;
-    const SOCIAL_INSURANCE_RATE = 2.9;
-    const ACCIDENT_INSURANCE_RATE = 0.2;
+    const PERSONAL_INC_TAX_RATE = 0.13;
+    const PENSION_TAX_RATE = 0.22;
+    const MEDICAL_INSURANCE_RATE = 0.051;
+    const SOCIAL_INSURANCE_RATE = 0.029;
+    const ACCIDENT_INSURANCE_RATE = 0.002;
 
     const DEDUCTION_PER_CHILD = 1400;
     const DEDUCTION_THIRD_CHILD = 3000;
@@ -42,24 +42,24 @@ $(document).ready(function () {
             if (salaryBeforeTaxWithDeduct <= 0)
                 personalIncomeTax = 0;
             else
-                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE).toFixed());
             salaryAfterTax = parseInt((salaryBeforeTax - personalIncomeTax).toFixed());
             allTaxes = personalIncomeTax + total;
             $('#all').text(allTaxes.toLocaleString());
             $('#salary').text(salaryAfterTax.toLocaleString());
             $('#ndfl').text(personalIncomeTax.toLocaleString());
         } else {
-            salaryBeforeTax = parseInt(((salaryAfterTax - allDeductions * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER) / (1 - PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER)).toFixed());
+            salaryBeforeTax = parseInt(((salaryAfterTax - allDeductions * PERSONAL_INC_TAX_RATE) / (1 - PERSONAL_INC_TAX_RATE)).toFixed());
             salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
             if (salaryBeforeTaxWithDeduct <= 0)
                 personalIncomeTax = 0;
             else
-                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
-            pensionTax = parseInt((salaryBeforeTax * PENSION_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
-            medicalInsurance = parseInt((salaryBeforeTax * MEDICAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
-            socialInsurance = parseInt((salaryBeforeTax * SOCIAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE).toFixed());
+            pensionTax = parseInt((salaryBeforeTax * PENSION_TAX_RATE).toFixed());
+            medicalInsurance = parseInt((salaryBeforeTax * MEDICAL_INSURANCE_RATE).toFixed());
+            socialInsurance = parseInt((salaryBeforeTax * SOCIAL_INSURANCE_RATE).toFixed());
             if (accidentInsuranceRatio === 0)
-                accidentInsurance = parseInt((salaryBeforeTax * ACCIDENT_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+                accidentInsurance = parseInt((salaryBeforeTax * ACCIDENT_INSURANCE_RATE).toFixed());
             else
                 accidentInsurance = parseInt((salaryBeforeTax * accidentInsuranceRatio).toFixed());
 
@@ -87,24 +87,24 @@ $(document).ready(function () {
             if (salaryBeforeTaxWithDeduct <= 0)
                 personalIncomeTax = 0;
             else
-                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE).toFixed());
             salaryAfterTax = parseInt((salaryBeforeTax - personalIncomeTax).toFixed());
             allTaxes = personalIncomeTax + total;
             $('#all').text(allTaxes.toLocaleString());
             $('#salary').text(salaryAfterTax.toLocaleString());
             $('#ndfl').text(personalIncomeTax.toLocaleString());
         } else {
-            salaryBeforeTax = parseInt(((salaryAfterTax - allDeductions * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER) / (1 - PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER)).toFixed());
+            salaryBeforeTax = parseInt(((salaryAfterTax - allDeductions * PERSONAL_INC_TAX_RATE) / (1 - PERSONAL_INC_TAX_RATE)).toFixed());
             salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
             if (salaryBeforeTaxWithDeduct <= 0)
                 personalIncomeTax = 0;
             else
-                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
-            pensionTax = parseInt((salaryBeforeTax * PENSION_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
-            medicalInsurance = parseInt((salaryBeforeTax * MEDICAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
-            socialInsurance = parseInt((salaryBeforeTax * SOCIAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE).toFixed());
+            pensionTax = parseInt((salaryBeforeTax * PENSION_TAX_RATE).toFixed());
+            medicalInsurance = parseInt((salaryBeforeTax * MEDICAL_INSURANCE_RATE).toFixed());
+            socialInsurance = parseInt((salaryBeforeTax * SOCIAL_INSURANCE_RATE).toFixed());
             if (accidentInsuranceRatio === 0)
-                accidentInsurance = parseInt((salaryBeforeTax * ACCIDENT_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+                accidentInsurance = parseInt((salaryBeforeTax * ACCIDENT_INSURANCE_RATE).toFixed());
             else
                 accidentInsurance = parseInt((salaryBeforeTax * accidentInsuranceRatio).toFixed());
 
@@ -131,24 +131,24 @@ $(document).ready(function () {
             if (salaryBeforeTaxWithDeduct <= 0)
                 personalIncomeTax = 0;
             else
-                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE).toFixed());
             salaryAfterTax = parseInt((salaryBeforeTax - personalIncomeTax).toFixed());
             allTaxes = personalIncomeTax + total;
             $('#all').text(allTaxes.toLocaleString());
             $('#salary').text(salaryAfterTax.toLocaleString());
             $('#ndfl').text(personalIncomeTax.toLocaleString());
         } else {
-            salaryBeforeTax = parseInt(((salaryAfterTax - allDeductions * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER) / (1 - PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER)).toFixed());
+            salaryBeforeTax = parseInt(((salaryAfterTax - allDeductions * PERSONAL_INC_TAX_RATE) / (1 - PERSONAL_INC_TAX_RATE)).toFixed());
             salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
             if (salaryBeforeTaxWithDeduct <= 0)
                 personalIncomeTax = 0;
             else
-                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
-            pensionTax = parseInt((salaryBeforeTax * PENSION_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
-            medicalInsurance = parseInt((salaryBeforeTax * MEDICAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
-            socialInsurance = parseInt((salaryBeforeTax * SOCIAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE).toFixed());
+            pensionTax = parseInt((salaryBeforeTax * PENSION_TAX_RATE).toFixed());
+            medicalInsurance = parseInt((salaryBeforeTax * MEDICAL_INSURANCE_RATE).toFixed());
+            socialInsurance = parseInt((salaryBeforeTax * SOCIAL_INSURANCE_RATE).toFixed());
             if (accidentInsuranceRatio === 0)
-                accidentInsurance = parseInt((salaryBeforeTax * ACCIDENT_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+                accidentInsurance = parseInt((salaryBeforeTax * ACCIDENT_INSURANCE_RATE).toFixed());
             else
                 accidentInsurance = parseInt((salaryBeforeTax * accidentInsuranceRatio).toFixed());
 
@@ -175,24 +175,24 @@ $(document).ready(function () {
             if (salaryBeforeTaxWithDeduct <= 0)
                 personalIncomeTax = 0;
             else
-                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE).toFixed());
             salaryAfterTax = parseInt((salaryBeforeTax - personalIncomeTax).toFixed());
             allTaxes = personalIncomeTax + total;
             $('#all').text(allTaxes.toLocaleString());
             $('#salary').text(salaryAfterTax.toLocaleString());
             $('#ndfl').text(personalIncomeTax.toLocaleString());
         } else {
-            salaryBeforeTax = parseInt(((salaryAfterTax - allDeductions * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER) / (1 - PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER)).toFixed());
+            salaryBeforeTax = parseInt(((salaryAfterTax - allDeductions * PERSONAL_INC_TAX_RATE) / (1 - PERSONAL_INC_TAX_RATE)).toFixed());
             salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
             if (salaryBeforeTaxWithDeduct <= 0)
                 personalIncomeTax = 0;
             else
-                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
-            pensionTax = parseInt((salaryBeforeTax * PENSION_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
-            medicalInsurance = parseInt((salaryBeforeTax * MEDICAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
-            socialInsurance = parseInt((salaryBeforeTax * SOCIAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+                personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE).toFixed());
+            pensionTax = parseInt((salaryBeforeTax * PENSION_TAX_RATE).toFixed());
+            medicalInsurance = parseInt((salaryBeforeTax * MEDICAL_INSURANCE_RATE).toFixed());
+            socialInsurance = parseInt((salaryBeforeTax * SOCIAL_INSURANCE_RATE).toFixed());
             if (accidentInsuranceRatio === 0)
-                accidentInsurance = parseInt((salaryBeforeTax * ACCIDENT_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+                accidentInsurance = parseInt((salaryBeforeTax * ACCIDENT_INSURANCE_RATE).toFixed());
             else
                 accidentInsurance = parseInt((salaryBeforeTax * accidentInsuranceRatio).toFixed());
 
@@ -215,7 +215,7 @@ $(document).ready(function () {
         if (salaryBeforeTax === 0)
             return;
         if (accidentInsuranceRatio === 0)
-            accidentInsuranceRatio = ACCIDENT_INSURANCE_RATE * PERCENT_TO_NUMBER;
+            accidentInsuranceRatio = ACCIDENT_INSURANCE_RATE;
         accidentInsurance = parseInt((salaryBeforeTax * accidentInsuranceRatio).toFixed());
         $('#fss-nc').text(accidentInsurance.toLocaleString());
         total = pensionTax + medicalInsurance + socialInsurance + accidentInsurance;
@@ -230,14 +230,14 @@ $(document).ready(function () {
         if (salaryBeforeTaxWithDeduct <= 0)
             personalIncomeTax = 0;
         else
-            personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
+            personalIncomeTax = parseInt((salaryBeforeTaxWithDeduct * PERSONAL_INC_TAX_RATE).toFixed());
         salaryAfterTax = parseInt((salaryBeforeTax - personalIncomeTax).toFixed());
-        pensionTax = parseInt((salaryBeforeTax * PENSION_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
-        medicalInsurance = parseInt((salaryBeforeTax * MEDICAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
-        socialInsurance = parseInt((salaryBeforeTax * SOCIAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+        pensionTax = parseInt((salaryBeforeTax * PENSION_TAX_RATE).toFixed());
+        medicalInsurance = parseInt((salaryBeforeTax * MEDICAL_INSURANCE_RATE).toFixed());
+        socialInsurance = parseInt((salaryBeforeTax * SOCIAL_INSURANCE_RATE).toFixed());
 
         if (accidentInsuranceRatio === 0)
-            accidentInsurance = parseInt((salaryBeforeTax * ACCIDENT_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+            accidentInsurance = parseInt((salaryBeforeTax * ACCIDENT_INSURANCE_RATE).toFixed());
         else
             accidentInsurance = parseInt((salaryBeforeTax * accidentInsuranceRatio).toFixed());
 
@@ -256,18 +256,18 @@ $(document).ready(function () {
 
     $('#salary-after').bind('input', function () {
         salaryAfterTax = $('#salary-after').val().replace(/,/, '.').replace(/\s/g, '') * 1; // string to number
-        salaryBeforeTax = parseInt(((salaryAfterTax - allDeductions * PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER) / (1 - PERSONAL_INC_TAX_RATE * PERCENT_TO_NUMBER)).toFixed());
+        salaryBeforeTax = parseInt(((salaryAfterTax - allDeductions * PERSONAL_INC_TAX_RATE) / (1 - PERSONAL_INC_TAX_RATE)).toFixed());
         salaryBeforeTaxWithDeduct = salaryBeforeTax - allDeductions;
         if (salaryBeforeTaxWithDeduct <= 0)
             personalIncomeTax = 0;
         else
             personalIncomeTax = parseInt((salaryBeforeTax - salaryAfterTax).toFixed());
-        pensionTax = parseInt((salaryBeforeTax * PENSION_TAX_RATE * PERCENT_TO_NUMBER).toFixed());
-        medicalInsurance = parseInt((salaryBeforeTax * MEDICAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
-        socialInsurance = parseInt((salaryBeforeTax * SOCIAL_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+        pensionTax = parseInt((salaryBeforeTax * PENSION_TAX_RATE).toFixed());
+        medicalInsurance = parseInt((salaryBeforeTax * MEDICAL_INSURANCE_RATE).toFixed());
+        socialInsurance = parseInt((salaryBeforeTax * SOCIAL_INSURANCE_RATE).toFixed());
 
         if (accidentInsuranceRatio === 0)
-            accidentInsurance = parseInt((salaryBeforeTax * ACCIDENT_INSURANCE_RATE * PERCENT_TO_NUMBER).toFixed());
+            accidentInsurance = parseInt((salaryBeforeTax * ACCIDENT_INSURANCE_RATE).toFixed());
         else
             accidentInsurance = parseInt((salaryBeforeTax * accidentInsuranceRatio).toFixed());
 
@@ -323,41 +323,19 @@ $(document).ready(function () {
 });
 
 /* получение/потеря фокуса поля ввода зарплаты при прямом и обратном расчете */
+
 $(document).ready(function () {
-    $("#salary-before").bind('focus', function () {
-        if ($("#salary-before").val() === '')
+    $('.salary').bind('focus', function () {
+        if ($(this).val() === '')
             $('.output').text('0');
     });
 });
 
 $(document).ready(function () {
-    $("#salary-before").bind('blur', function () {
-        if ($("#salary-before").val() === '') {
+    $('.salary').bind('blur', function () {
+        if ($(this).val() === '') {
             $('#salary').text('26 100');
             $('#salary-rev').text('30 000');
-            $('#ndfl').text('3 900');
-            $('#pfr').text('6 600');
-            $('#ffoms').text('1 530');
-            $('#fss').text('870');
-            $('#fss-nc').text('60');
-            $('#total').text('9 060');
-            $('#all').text('12 960');
-        }
-    });
-});
-
-$(document).ready(function () {
-    $("#salary-after").bind('focus', function () {
-        if ($("#salary-after").val() === '')
-            $('.output').text('0');
-    });
-});
-
-$(document).ready(function () {
-    $("#salary-after").bind('blur', function () {
-        if ($("#salary-after").val() === '') {
-            $('#salary-rev').text('30 000');
-            $('#salary').text('26 100');
             $('#ndfl').text('3 900');
             $('#pfr').text('6 600');
             $('#ffoms').text('1 530');
